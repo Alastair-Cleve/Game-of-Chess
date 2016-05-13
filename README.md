@@ -13,7 +13,7 @@ until a player is in checkmate or there are no valid moves.
 
 ###How to Run
 This is an implementation of Chess in Ruby. To play, download this repository,
-save it, use the command line to navigate to the directory where you saved it.
+save it, and use the command line to navigate to the directory where you saved it.
 
 ####Ruby
 If you are unsure of whether you have Ruby available on your computer, you can
@@ -70,13 +70,63 @@ keystroke inputs and is what makes the game interactive.
 The game's structure includes a `pieces/` directory, which includes files for each
 of the game piece classes, such as bishop, rook, and queen. In addition, the
 architecture includes a board file that populates the board and keeps track
-of the rules. The keystroke input language lives in the `cursorable` file, `display`
+of the rules. The keystroke input handling lives in the `cursorable` file, `display`
 is what takes care of the rendering of the board, and `chess` controls the
 interaction with the command line.
 
 Of particular interest are the modules [slideable][slideable] and [steppable][steppable].
+The point of these modules is to DRY out the code. Categorizing pieces into
+pieces that slide (such as queens and rooks) and pieces that step (such as knights)
+allowed me to consolidate the common behaviors of those pieces into modules.
+The individual pieces then inherit from those modules as needed:
 
+```ruby
+class Knight < Piece
+  include Steppable
+  .
+  .
+  .
+end
+```
 
+Also of interest is how I detect when a piece is in check. In the `piece` file,
+I wrote a method `move_into_check`, which creates a duplicate board, makes a
+move, and then calls `in_check?` on the `board` class.
+
+```ruby
+def move_into_check?(move)
+  new_board = @board.dup
+  new_board.move!(@position, move)
+  new_board.in_check?(@color)
+end
+```
+
+The `dup` method (referenced above in `@board.dup`) is written as follows:
+
+```ruby
+def dup
+  new_board = Board.new(false)
+  @grid.flatten.each do |space|
+    if space.is_a?(NullPiece)
+      NullPiece.new(new_board, space.position)
+    else
+      space.class.new(new_board, space.position, space.color)
+    end
+  end
+
+  new_board
+end
+```
+
+In `dup`, I create a new board. I then iterate over the current grid, and if a
+space on the current grid is empty, I instantiate a NullPiece on the duplicate
+grid; otherwise, I duplicate the piece. This allows me to duplicate the current
+grid without affecting the underlying current grid. Finally, `dup` returns the
+the duplicate board, which is used in `move_into_check` above.
+
+##To Dos
+- Integrate AI so that players can play individually.
+- Implement support for castling.
 
 [slideable]: ./pieces/slideable.rb
 [steppable]: ./pieces/steppable.rb
