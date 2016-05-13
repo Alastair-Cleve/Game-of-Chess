@@ -50,8 +50,8 @@ class Board
 
   def in_bounds?(pos)
     x, y = pos
-    x.between?(0,@grid.length-1) &&
-      y.between?(0,@grid[0].length-1)
+    x.between?(0, @grid.length - 1) &&
+      y.between?(0, @grid[0].length - 1)
   end
 
   def move(start_pos, end_pos)
@@ -127,6 +127,5 @@ class Board
 
     new_board
   end
-
 
 end

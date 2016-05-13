@@ -128,7 +128,7 @@ the duplicate board, which is used in `move_into_check` above.
 
 ##To Dos
 - Integrate AI so that players can play individually.
-- Implement support for castling.
+- Implement support for castling and other special moves.
 
 [slideable]: ./pieces/Slideable.rb
 [steppable]: ./pieces/Steppable.rb

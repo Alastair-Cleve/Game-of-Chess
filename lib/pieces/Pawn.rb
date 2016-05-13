@@ -36,7 +36,7 @@ class Pawn < Piece
       left = [self.position[0] - 1, self.position[1] - 1]
       right = [self.position[0] - 1, self.position[1] + 1]
       if @board.in_bounds?(left)
-          moves << [-1, -1] if @board[left].color == :black
+        moves << [-1, -1] if @board[left].color == :black
       end
 
       if @board.in_bounds?(right)

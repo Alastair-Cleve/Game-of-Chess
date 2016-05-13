@@ -34,7 +34,7 @@ module Slideable
 
         break unless @board.in_bounds?(new_pos)
 
-        if @board.has_piece?(new_pos) && @board[new_pos].color == color
+        if @board.has_piece?(new_pos) && @board[new_pos].color == @color
           break
         elsif @board.has_piece?(new_pos)
           moves << new_pos
