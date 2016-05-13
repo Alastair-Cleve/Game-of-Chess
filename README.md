@@ -57,6 +57,8 @@ Finally, to play, run:
 ruby Chess.rb
 ```
 
+Remember that the white pieces move first.
+
 ##Technical Implementation
 
 ###Gems
@@ -67,14 +69,14 @@ In addition, the `io/console` gem is used. This provides the ability to read
 keystroke inputs and is what makes the game interactive.
 
 ###Architecture
-The game's structure includes a `pieces/` directory, which includes files for each
+The game's structure includes a `lib/pieces/` directory, which includes files for each
 of the game piece classes, such as bishop, rook, and queen. In addition, the
 architecture includes a board file that populates the board and keeps track
-of the rules. The keystroke input handling lives in the `cursorable` file, `display`
-is what takes care of the rendering of the board, and `chess` controls the
+of the rules. The keystroke input handling lives in the `Cursorable` file, `Display`
+is what takes care of the rendering of the board, and `Chess` controls the
 interaction with the command line.
 
-Of particular interest are the modules [slideable][slideable] and [steppable][steppable].
+Of particular interest are the modules [Slideable][slideable] and [Steppable][steppable].
 The point of these modules is to DRY out the code. Categorizing pieces into
 pieces that slide (such as queens and rooks) and pieces that step (such as knights)
 allowed me to consolidate the common behaviors of those pieces into modules.
@@ -89,9 +91,9 @@ class Knight < Piece
 end
 ```
 
-Also of interest is how I detect when a piece is in check. In the `piece` file,
+Also of interest is how I detect when a piece is in check. In the `Piece` file,
 I wrote a method `move_into_check`, which creates a duplicate board, makes a
-move, and then calls `in_check?` on the `board` class.
+move, and then calls `in_check?` on the `Board` class.
 
 ```ruby
 def move_into_check?(move)
@@ -128,5 +130,5 @@ the duplicate board, which is used in `move_into_check` above.
 - Integrate AI so that players can play individually.
 - Implement support for castling.
 
-[slideable]: ./pieces/slideable.rb
-[steppable]: ./pieces/steppable.rb
+[slideable]: ./pieces/Slideable.rb
+[steppable]: ./pieces/Steppable.rb
