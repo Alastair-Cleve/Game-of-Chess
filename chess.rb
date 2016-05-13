@@ -1,4 +1,4 @@
-require_relative 'player'
+require_relative './lib/Player'
 
 class Chess
 

@@ -1,5 +1,5 @@
-require_relative 'piece'
-require_relative 'steppable'
+require_relative 'Piece'
+require_relative 'Steppable'
 
 class Pawn < Piece
   include Steppable

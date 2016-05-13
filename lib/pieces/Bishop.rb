@@ -1,7 +1,7 @@
-require_relative 'piece'
-require_relative 'slideable'
+require_relative 'Piece'
+require_relative 'Slideable'
 
-class Queen < Piece
+class Bishop < Piece
   include Slideable
   attr_reader :color
   attr_accessor :position
@@ -11,11 +11,11 @@ class Queen < Piece
   end
 
   def move_dir
-    diagonal_dir + orthagonal_dir
+    diagonal_dir
   end
 
   def to_s
-    color == :white ? "\u2655 " : "\u265B "
+    color == :white ? "\u2657 " : "\u265D "
   end
 
 end

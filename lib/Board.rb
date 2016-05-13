@@ -1,5 +1,4 @@
 require_relative 'pieces'
-require 'byebug'
 
 class Board
   attr_accessor :grid
@@ -27,7 +26,6 @@ class Board
         if row_idx == 1 || row_idx == 6
           color = row_idx % 2 == 0 ? :white : :black
           space = Pawn.new(self, [row_idx, space_idx], color)
-          # space = NullPiece.new(self, [row_idx, space_idx])
         elsif row_idx == 0 || row_idx == 7
           color = row_idx == 0 ? :black : :white
           case space_idx

@@ -54,7 +54,7 @@ You will be asked to authenticate yourself.
 Finally, to play, run:
 
 ```bash
-ruby chess.rb
+ruby Chess.rb
 ```
 
 ##Technical Implementation

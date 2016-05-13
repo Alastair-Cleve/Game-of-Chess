@@ -1,6 +1,5 @@
-require_relative "display"
-require_relative "./pieces/errors"
-require 'byebug'
+require_relative "Display"
+require_relative "./pieces/ChessMoveError"
 
 class Player
   attr_reader :name, :color
@@ -67,7 +66,3 @@ class Player
   end
 
 end
-
-# board = Board.new(true)
-# steve = Player.new(board)
-# steve.play_turn

@@ -1,7 +1,7 @@
-require_relative 'piece'
-require_relative 'steppable'
+require_relative 'Piece'
+require_relative 'Steppable'
 
-class King < Piece
+class Knight < Piece
   include Steppable
   attr_reader :color
   attr_accessor :position
@@ -11,11 +11,11 @@ class King < Piece
   end
 
   def move_dir
-    king_dir
+    knight_dir
   end
 
   def to_s
-    color == :white ? "\u2654 " : "\u265A "
+    color == :white ? "\u2658 " : "\u265E "
   end
 
 end
